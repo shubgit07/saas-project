@@ -3,7 +3,7 @@ import React from 'react'
 const page = () => {
   return (
     <div>
-      companions page it is.
+      Companion Library Page
     </div>
   )
 }
