@@ -8,7 +8,7 @@ const Navbar = () => {
             <Link href="/">
                 <div className="flex items-center gap-2.5 cursor-pointer">
                     <Image
-                        src="/images/logo.svg"
+                        src="/images/apple-touch-icon.png."
                         alt="logo"
                         width={46}
                         height={44}
