@@ -1,8 +1,12 @@
+import CompanionForm from "@/components/CompanionForm"
+
 const NewCompanion = () => {
   return (
-    <div>
-      this is new under companion
-    </div>
+    <main>
+      <article>
+        <CompanionForm/>
+      </article>
+    </main>
   )
 }
 
