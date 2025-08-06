@@ -42,7 +42,7 @@ return (
           transition={{ delay: 0.2 }}
           className="flex flex-wrap justify-center gap-6 mb-10"
         >
-          {benefits.map((benefit, index) => (
+          {benefits.map((benefit) => (
             <div key={benefit} className="flex items-center gap-2 text-blue-100">
               <Check className="w-5 h-5 text-green-400" />
               <span>{benefit}</span>
