@@ -111,31 +111,58 @@ export const newCompanionPermissions = async () => {
     const { userId, has } = await auth();
     const supabase = createSupabaseClient();
 
-    let limit = 0;
+    let limit = 3; // Default to 3 for basic/free users
 
+    // Check for pro plan first (unlimited companions)
     if(has({ plan: 'pro' })) {
         return true;
-    } else if(has({ feature: "3_companion_limit" })) {
-        limit = 3;
-    } else if(has({ feature: "10_companion_limit" })) {
+    } 
+    // Check for Core Learner plan using the exact key from your dashboard
+    else if(has({ plan: 'core' })) {
         limit = 10;
+    } 
+    // Check for Basic Plan using the exact key from your dashboard  
+    else if(has({ plan: 'basic' })) {
+        limit = 3;
     }
+    // Feature-based checks as fallback
+    else if(has({ feature: "10_companion_limit" })) {
+        limit = 10;
+    } 
+    else if(has({ feature: "3_companion_limit" })) {
+        limit = 3;
+    }
+    else {
+        limit = 3; // Default for free users
+    }
+
+    // Debug logging to see what's happening
+    console.log('Permission check:', {
+        userId,
+        hasProPlan: has({ plan: 'pro' }),
+        hasCorePlan: has({ plan: 'core' }),
+        hasBasicPlan: has({ plan: 'basic' }),
+        has10Limit: has({ feature: "10_companion_limit" }),
+        has3Limit: has({ feature: "3_companion_limit" }),
+        assignedLimit: limit
+    });
 
     const { data, error } = await supabase
         .from('companions')
         .select('id', { count: 'exact' })
-        .eq('author', userId)
+        .eq('author', userId);
 
     if(error) throw new Error(error.message);
 
-    const companionCount = data?.length;
+    const companionCount = data?.length || 0;
 
-    if(companionCount >= limit) {
-        return false
-    } else {
-        return true;
-    }
+    console.log(`User has ${companionCount} companions, limit is ${limit}`);
+
+    return companionCount < limit;
 }
+
+
+
 
 // Bookmarks
 export const addBookmark = async (companionId: string, path: string) => {

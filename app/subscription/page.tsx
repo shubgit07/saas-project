@@ -2,10 +2,12 @@ import { PricingTable } from "@clerk/nextjs"
 
 const Subscription = () => {
   return (
-    <div>
-
+    <main className="bg-amber-500 rounded-2xl">
       <PricingTable/>
-    </div>
+    </main>
+
+      
+    
   )
 }
 
