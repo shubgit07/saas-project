@@ -208,6 +208,6 @@ export const getBookmarkedCompanions = async (userId: string) => {
   if (error) {
     throw new Error(error.message);
   }
-  // We don't need the bookmarks data, so we return only the companions
-  return data.map(({ companions }) => companions);
+  // We don't need the bookmarks data, so we return only the companions (flattened)
+  return data.map(({ companions }) => companions).flat();
 };
