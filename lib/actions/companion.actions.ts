@@ -92,7 +92,7 @@ export const getUserSessions = async (userId: string, limit = 10) => {
 
     if(error) throw new Error(error.message);
 
-    return data.map(({ companions }) => companions);
+    return data.map(({ companions }) => companions).flat();
 }
 
 export const getUserCompanions = async (userId: string) => {
