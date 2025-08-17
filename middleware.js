@@ -1,5 +1,5 @@
 // Converted from middleware.ts to JavaScript
 
-module.exports = (req, ev) => {
+export default function middleware(req, ev) {
   return new Response('OK');
-};
+}
