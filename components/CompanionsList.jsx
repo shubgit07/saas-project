@@ -5,31 +5,15 @@ import {
     TableHead,
     TableHeader,
     TableRow,
-} from "@/components/ui/table"
+} from "@/components/ui/table";
 import { cn, getSubjectColor } from "@/lib/utils";
 import Link from "next/link";
 import Image from "next/image";
 
-// Add the missing Companion interface
-interface Companion {
-    id: string;
-    subject: string;
-    name: string;
-    topic: string;
-    duration: number;
-}
-
-interface CompanionsListProps {
-    title: string;
-    companions?: Companion[];
-    classNames?: string;
-}
-
-const CompanionsList = ({ title, companions, classNames }: CompanionsListProps) => {
+const CompanionsList = ({ title, companions, classNames }) => {
     return (
         <article className={cn('companion-list', classNames)}>
             <h2 className="font-bold text-3xl">{title}</h2>
-
             <Table>
                 <TableHeader>
                     <TableRow>
@@ -39,7 +23,6 @@ const CompanionsList = ({ title, companions, classNames }: CompanionsListProps) 
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {/* This line creates a new, de-duplicated array before mapping */}
                     {companions && [...new Map(companions.map(item => [item.id, item])).values()].map(
                         ({ id, subject, name, topic, duration }) => (
                             <TableRow key={id}>
@@ -99,10 +82,9 @@ const CompanionsList = ({ title, companions, classNames }: CompanionsListProps) 
                         )
                     )}
                 </TableBody>
-
             </Table>
         </article>
-    )
-}
+    );
+};
 
 export default CompanionsList;

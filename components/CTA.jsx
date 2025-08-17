@@ -18,6 +18,6 @@ const Cta = () => {
                 </Link>
             </Button>
         </section>
-    )
-}
-export default Cta
+    );
+};
+export default Cta;

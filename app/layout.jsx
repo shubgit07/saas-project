@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { Bricolage_Grotesque } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
@@ -9,16 +8,7 @@ const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "MySaasApp",
-  description: "Real-time AI Teaching Platform",
-};
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${bricolage.variable} antialiased`}>

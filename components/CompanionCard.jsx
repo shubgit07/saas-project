@@ -2,16 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
 
-interface CompanionCardProps {
-  id: string;
-  name: string;
-  topic: string;
-  subject: string;
-  duration: number;
-  color: string;
-}
-
-const CompanionCard = ({ id, name, topic, subject, duration, color }: CompanionCardProps) => {
+const CompanionCard = ({ id, name, topic, subject, duration, color }) => {
   return (
     <article 
       className="companion-card rounded-2xl p-5 cursor-pointer shadow-md border-0 hover:shadow-2xl hover:-translate-y-1 transition-all duration-250 ease-out" 
@@ -40,4 +31,4 @@ const CompanionCard = ({ id, name, topic, subject, duration, color }: CompanionC
   )
 }
 
-export default CompanionCard
+export default CompanionCard;

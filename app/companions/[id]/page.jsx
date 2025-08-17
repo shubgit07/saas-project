@@ -1,5 +1,3 @@
-// app/companions/[id]/page.tsx
-
 import { getCompanion } from "@/lib/actions/companion.actions";
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
@@ -7,27 +5,15 @@ import { getSubjectColor } from "@/lib/utils";
 import Image from "next/image";
 import CompanionComponent from "@/components/CompanionComponent";
 
-interface CompanionSessionPageProps {
-    params: Promise<{ id: string }>;
-}
-
-const CompanionSession = async ({ params }: CompanionSessionPageProps) => {
+const CompanionSession = async ({ params }) => {
     const { id } = await params;
     const companion = await getCompanion(id);
     const user = await currentUser();
-
-    // --- FIX: Add a check here ---
-    // If no companion is found for the ID, redirect the user.
     if (!companion) {
         redirect('/companions');
     }
-    // ----------------------------
-
-    // Now it's safe to destructure.
     const { name, subject, topic, duration } = companion;
-
     if (!user) redirect('/sign-in');
-
     return (
         <main>
             <article className="flex rounded-border justify-between p-6 max-md:flex-col">
@@ -51,15 +37,14 @@ const CompanionSession = async ({ params }: CompanionSessionPageProps) => {
                     {duration} minutes
                 </div>
             </article>
-
             <CompanionComponent
                 {...companion}
                 companionId={id}
-                userName={user.firstName!}
-                userImage={user.imageUrl!}
+                userName={user.firstName}
+                userImage={user.imageUrl}
             />
         </main>
-    )
+    );
 }
 
 export default CompanionSession;

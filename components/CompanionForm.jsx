@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { useForm } from "react-hook-form"
-import { Button } from "@/components/ui/button"
+import { useForm } from "react-hook-form";
+import { Button } from "@/components/ui/button";
 import {
     Form,
     FormControl,
@@ -9,39 +9,25 @@ import {
     FormItem,
     FormLabel,
     FormMessage,
-}
-    from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 import {
     Select,
     SelectContent,
     SelectItem,
     SelectTrigger,
     SelectValue,
-}
-    from "@/components/ui/select"
+} from "@/components/ui/select";
 import { subjects } from "@/constants";
 import { Textarea } from "@/components/ui/textarea";
 import { createCompanion } from "@/lib/actions/companion.actions";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-// Manually define the type, as we are not using z.infer anymore
-type CompanionFormValues = {
-    name: string;
-    subject: string;
-    topic: string;
-    voice: string;
-    style: string;
-    duration: number;
-};
-
 const CompanionForm = () => {
     const router = useRouter();
     const [isSubmitting, setIsSubmitting] = useState(false);
-
-    // useForm is now configured without the Zod resolver
-    const form = useForm<CompanionFormValues>({
+    const form = useForm({
         defaultValues: {
             name: '',
             subject: '',
@@ -51,9 +37,7 @@ const CompanionForm = () => {
             duration: 5,
         },
     });
-
-    // The onSubmit function still uses our manually defined type
-    const onSubmit = async (values: CompanionFormValues) => {
+    const onSubmit = async (values) => {
         setIsSubmitting(true);
         try {
             const companion = await createCompanion(values);
@@ -69,7 +53,6 @@ const CompanionForm = () => {
             setIsSubmitting(false);
         }
     };
-
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -85,7 +68,6 @@ const CompanionForm = () => {
                         </FormItem>
                     )}
                 />
-
                 <FormField
                     control={form.control}
                     name="subject"
@@ -101,7 +83,6 @@ const CompanionForm = () => {
                         </FormItem>
                     )}
                 />
-
                 <FormField
                     control={form.control}
                     name="topic"
@@ -114,7 +95,6 @@ const CompanionForm = () => {
                         </FormItem>
                     )}
                 />
-
                 <FormField
                     control={form.control}
                     name="voice"
@@ -133,7 +113,6 @@ const CompanionForm = () => {
                         </FormItem>
                     )}
                 />
-
                 <FormField
                     control={form.control}
                     name="style"
@@ -152,7 +131,6 @@ const CompanionForm = () => {
                         </FormItem>
                     )}
                 />
-
                 <FormField
                     control={form.control}
                     name="duration"
@@ -175,14 +153,12 @@ const CompanionForm = () => {
                         </FormItem>
                     )}
                 />
-
-
                 <Button type="submit" className="w-full" disabled={isSubmitting}>
                     {isSubmitting ? 'Building...' : 'Build Your Companion'}
                 </Button>
             </form>
         </Form>
     );
-}
+};
 
 export default CompanionForm;

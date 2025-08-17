@@ -16,20 +16,17 @@ import CompanionsList from "@/components/CompanionsList";
 
 const Profile = async () => {
   const user = await currentUser();
-
   if (!user) redirect("/sign-in");
-
   const companions = await getUserCompanions(user.id);
   const sessionHistory = await getUserSessions(user.id);
   const bookmarkedCompanions = await getBookmarkedCompanions(user.id);
-
   return (
     <main className="min-lg:w-3/4">
       <section className="flex justify-between gap-4 max-sm:flex-col items-center">
         <div className="flex gap-4 items-center">
           <Image
             src={user.imageUrl}
-            alt={user.firstName!}
+            alt={user.firstName}
             width={110}
             height={110}
           />

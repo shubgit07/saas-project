@@ -1,13 +1,13 @@
-import { 
-  Mic, 
-  Shield, 
-  CreditCard, 
-  Bookmark, 
-  Code, 
-  Plus, 
-  Smartphone, 
-  Database, 
-  Palette, 
+import {
+  Mic,
+  Shield,
+  CreditCard,
+  Bookmark,
+  Code,
+  Plus,
+  Smartphone,
+  Database,
+  Palette,
   Search,
   Zap,
   Users
