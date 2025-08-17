@@ -1,7 +1,10 @@
 // Converted from middleware.ts to JavaScript
+
 const { clerkMiddleware } = require('@clerk/nextjs/server');
 
-module.exports = clerkMiddleware();
+const middleware = clerkMiddleware();
+
+module.exports = middleware;
 
 module.exports.config = {
   matcher: [
