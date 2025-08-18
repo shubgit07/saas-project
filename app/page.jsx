@@ -9,7 +9,11 @@ export default function HomePage() {
       className={`min-h-screen flex flex-col items-center justify-center rounded-3xl shadow-md shadow-gray-300`}
       style={{ background: COLORS.backgroundGradientStyle }}
     >
-      <h1 className={`${COLORS.heading} mb-8 mt-16 text-center`}>Welcome to SphereAi</h1>
+      <div className="hero-heading-wrapper mb-8 mt-16 w-full">
+        <div className="clouds" aria-hidden="true"></div>
+        <div className="clouds layer-2" aria-hidden="true"></div>
+        <h1 className={`${COLORS.heading} gradient-text text-center z-10 relative`}>Welcome to SphereAi</h1>
+      </div>
       <p className={`${COLORS.paragraph} mb-12 text-center max-w-2xl`}>
         Real-time AI teaching platform. Build your own AI tutors, learn with voice, and track your journey!
       </p>
